@@ -12,8 +12,8 @@ mostrar_cardapio()
 
 #def fazer_pedido():
 #   pedido = []
-#    total = 0.0
+#   total = 0.0
 
-#    item_escolhido = 
+#   item_escolhido = input("Digite o nome do produto escolhido: ")
 
 
