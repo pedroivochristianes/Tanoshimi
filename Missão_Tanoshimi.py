@@ -32,28 +32,36 @@ def mostrar_cardapio():
 cardapio = mostrar_cardapio()
 
 def fazer_pedido():
-  pedido = []
-  total = 0.0
-  while True:
-   
-    item_escolhido = input("Digite o nome do produto escolhido ou 'sair' para finalizar: ").lower()
+    pedido = []
+    total = 0.0
+    while True:
+      try:
+          item_escolhido = input("Digite o nome do produto escolhido ou 'sair' para finalizar: ").lower()
 
+          if item_escolhido.lower() == "sair":
+            break 
+
+          elif item_escolhido in cardapio:
+            quantidade = int(input(f"quantos(as) {item_escolhido} você deseja?"))
+            pedido.append({"item": item_escolhido, "quantidade": quantidade, "preço": cardapio[item_escolhido]})
+            total += cardapio[item_escolhido] * quantidade
+            print(f"{quantidade}x {item_escolhido} adicionado(s)! R$ {total:.2f}.")
     
-    if item_escolhido.lower() == "sair":
-      break 
+          else:
+            print("Item não encontrado no cardápio. Tente novamente.")
 
-    elif item_escolhido in cardapio:
-      quantidade = int(input(f"quantos(as) {item_escolhido} você deseja?"))
-      pedido.append({"item": item_escolhido, "quantidade": quantidade, "preço": cardapio[item_escolhido]})
-      total += cardapio[item_escolhido] * quantidade
-      print(f"{quantidade}x {item_escolhido} adicionado(s)! R$ {total:.2f}.")
-    
-    else:
-      print("Item não encontrado no cardápio. Tente novamente.")
+          return total
+      
+      except ValueError:
+        print(f"Erro.")
+        print("Escreva corretamente o item desejado.")
 
-  return total
-    
+      else:
+        print("Pedido feito corretamente.")
 
+      finally:
+        print("Agradecemos a preferencia.")
+        
 
 
 # 4. Etapa 3: Saída - fechar_conta (slide 12)
@@ -80,14 +88,5 @@ def main():
 # Ponto de entrada do programa
 if __name__ == "__main__":
     main()
-
-
-
-
-
-
-
-
-
 
 
