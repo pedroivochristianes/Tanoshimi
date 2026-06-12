@@ -29,11 +29,12 @@ def mostrar_cardapio():
 
 
 
-cardapio = mostrar_cardapio()
+
 
 def fazer_pedido():
     pedido = []
     total = 0.0
+    cardapio = mostrar_cardapio()
     while True:
       try:
           item_escolhido = input("Digite o nome do produto escolhido ou 'sair' para finalizar: ").lower()
@@ -52,15 +53,11 @@ def fazer_pedido():
 
           return total
       
-      except ValueError:
-        print(f"Erro.")
+      except ValueError as e:
+        print(f"Erro. Detalhes {e}")
         print("Escreva corretamente o item desejado.")
 
-      else:
-        print("Pedido feito corretamente.")
-
-      finally:
-        print("Agradecemos a preferencia.")
+      
         
 
 
@@ -78,7 +75,7 @@ def fechar_conta(total_sem_taxa):
 # 5. Execução principal - Integração completa (slide 12)
 def main():
     print("=== Bem-vindo ao Restaurante Tanoshimi ===")
-    mostrar_cardapio()
+    
     total_sem_taxa = fazer_pedido()
     if total_sem_taxa > 0:
         fechar_conta(total_sem_taxa)
